@@ -1,0 +1,55 @@
+.wrapper{
+  font-size: 0;
+  width: 600px;
+  margin: 0 auto;
+}
+.box{
+  display: inline-block;
+  font-size: 18px;
+  width: 54px;
+  height: 60px;
+  margin: 10px;
+  line-height: 60px;
+  text-align: center;
+  background-color: #f9f7f8;
+  border: 3px solid #efefef;
+}
+.box0{}
+.box1{
+  margin: 0 20px 0 40px;
+  transform: skew(30deg);
+  -ms-transform: skew(30deg);/* IE 9 */
+  -webkit-transform: skew(30deg);	/* Safari and Chrome */
+  -moz-transform: skew(30deg);/* Firefox */
+  -o-transform: skew(30deg);/* Opera */
+}
+.box2{
+  transform: scaleX(0.5);
+  -ms-transform: scaleX(0.5);/* IE 9 */
+  -webkit-transform: scaleX(0.5);	/* Safari and Chrome */
+  -moz-transform: scaleX(0.5);/* Firefox */
+  -o-transform: scaleX(0.5);/* Opera */
+}
+.box3{
+  margin: 0 30px 0 20px;
+  transform: rotate(45deg);
+  -ms-transform: rotate(45deg);/* IE 9 */
+  -webkit-transform: rotate(45deg); /* Safari and Chrome */
+  -moz-transform: rotate(45deg);/* Firefox */
+  -o-transform: rotate(45deg);/* Opera */
+}
+.box4{
+  transform: translate(10px,20px);
+  -ms-transform: translate(10px,20px);/* IE 9 */
+  -webkit-transform: translate(10px,20px); /* Safari and Chrome */
+  -moz-transform: translate(10px,20px);/* Firefox */
+  -o-transform: translate(10px,20px);/* Opera */
+}
+.box5{
+  margin: 0 0 0 40px;
+  transform: skew(30deg) scaleX(0.5) rotate(45deg) translate(10px,20px);
+  -ms-transform: skew(30deg) scaleX(0.5) rotate(45deg) translate(10px,20px);/* IE 9 */
+  -webkit-transform: skew(30deg) scaleX(0.5) rotate(45deg) translate(10px,20px); /* Safari and Chrome */
+  -moz-transform: skew(30deg) scaleX(0.5) rotate(45deg) translate(10px,20px);/* Firefox */
+  -o-transform: skew(30deg) scaleX(0.5) rotate(45deg) translate(10px,20px);/* Opera */
+}
