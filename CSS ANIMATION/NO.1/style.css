@@ -1,0 +1,41 @@
+body, p{margin: 0;padding: 0;}
+.wrapper{width: 100px;margin: 0 auto;text-align: center;}
+.text{
+  font-size: 24px;
+  margin: 10px 0;
+  padding: 10px 0;
+  position: relative;
+}
+.text:hover, .change{
+  color: #4c7beb;
+}
+.text::after{
+  width: 100px;
+  height: 5px;
+  content: "";
+  background-color: #4c7beb;
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  transform: scaleX(0);
+  -ms-transform: scaleX(0); /* IE */
+  -moz-transform: scaleX(0);/* Firefox */
+  -webkit-transform: scaleX(0);/* Safari and Chrome */
+  -o-transform: scaleX(0);/* Opera */
+  transition: all 0.5s;
+  -moz-transition: all 0.5s;/* Firefox */
+  -webkit-transition: all 0.5s;/* Safari and Chrome */
+  -o-transition: all 0.5s;/* Opera */
+}
+.text:hover::after, .change::after{
+  transform: scaleX(1);
+  -ms-transform: scaleX(1); /* IE */
+  -moz-transform: scaleX(1);/* Firefox */
+  -webkit-transform: scaleX(1);/* Safari and Chrome */
+  -o-transform: scaleX(1);/* Opera */
+}
+button{
+  font-size: 18px;
+  border-radius: 5px;
+  outline: 0;
+}
