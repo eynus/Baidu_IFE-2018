@@ -1,0 +1,81 @@
+*{margin: 0;padding: 0;-webkit-box-sizing: border-box;box-sizing: border-box;}
+body{width: 100%;height: 100%;background: black;}
+.stage{
+    width: 400px;
+    height: 400px;
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    margin: auto;
+    perspective: 400px;
+    -webkit-perspective: 400px;
+}
+.box{
+    width: 200px;
+    height: 200px;
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    margin: auto;
+    transform-style: preserve-3d;
+    -webkit-transform-style: preserve-3d;
+}
+.box div{
+    width: 200px;
+    height: 200px;
+    position: absolute;
+    border: 2px solid rgba(70,161,222,0.5);
+    background: rgba(49,52,197,0.3)
+}
+.b1{
+    transform: rotateX(90deg) translateZ(100px);
+    -webkit-transform: rotateX(90deg) translateZ(100px);
+}
+.b2{
+    transform: rotateX(90deg) translateZ(-100px);
+    -webkit-transform: rotateX(90deg) translateZ(-100px);
+}
+.b3{
+    transform: rotateY(90deg) translateZ(100px);
+    -webkit-transform: rotateY(90deg) translateZ(100px);
+}
+.b4{
+    transform: rotateY(90deg) translateZ(-100px);
+    -webkit-transform: rotateY(90deg) translateZ(-100px);
+}
+.b5 {
+    transform: translateZ(100px);
+    -webkit-transform: translateZ(100px);
+}
+.b6 {
+    transform: translateZ(-100px);
+    -webkit-transform: translateZ(-100px);
+}
+@-webkit-keyframes roll {
+    from {
+        -webkit-transform: rotateY(360deg);
+        transform: rotateY(360deg);
+    }
+    to {
+        -webkit-transform: rotateY(0deg);
+        transform: rotateY(0deg);
+    }
+}
+@keyframes roll {
+    from {
+        -webkit-transform: rotateY(360deg);
+        transform: rotateY(360deg);
+    }
+    to {
+        -webkit-transform: rotateY(0deg);
+        transform: rotateY(0deg);
+    }
+}
+.box:hover {
+    -webkit-animation: roll 4s linear infinite;
+    animation: roll 9s linear infinite;
+}
