@@ -1,0 +1,76 @@
+body{
+  margin: 0;
+  padding: 0;
+}
+.wrapper{
+  width: 100%;
+  height: 610px;
+  position: relative;
+}
+.slider{
+  width: 100%;
+  height: 610px;
+  overflow: hidden;
+}
+.slider img{
+  width: 100%;
+  height: 610px;
+}
+.list{
+  float: left;
+  width: 100%;
+  height: 610px;
+  position: relative;
+}
+.btn{
+  font-size: 0;
+  width: 100%;
+  position: absolute;
+  left: 0;
+  bottom: 20px;
+}
+.click{
+  display: inline-block;
+  width: 20%;
+  height: 100px;
+}
+#list1:target{
+  animation: move1 .5s ease-out;
+}
+@keyframes move1{
+  from{left: -500px;}
+  to{left: 0;}
+}
+#list2:target{
+  animation: move2 .5s ease-out;
+}
+@keyframes move2{
+  from{top: 350px;}
+  to{top: 0;}
+}
+#list3:target{
+  animation: move3 .5s ease-in;
+}
+@keyframes move3{
+  from{transform: scale(0.1,0.1)}
+  to{transform: scale(1,1)}
+}
+#list4:target{
+  animation: move4 .5s ease-out;
+}
+@keyframes move4{
+  from{transform: scale(2,2)}
+  to{transform: scale(1,1)}
+}
+#list5:target{
+  animation: move5 .5s ease-in-out;
+}
+@keyframes move5{
+  from{transform: scale(0.1,0.1) rotate(-360deg); }
+  to{transform: scale(1,1 rotate(0))}
+}
+.btn a:nth-child(1){background: url(images/1.jpg) no-repeat;background-size: cover;}
+.btn a:nth-child(2){background: url(images/2.jpg) no-repeat;background-size: cover;}
+.btn a:nth-child(3){background: url(images/3.jpg) no-repeat;background-size: cover;}
+.btn a:nth-child(4){background: url(images/4.jpg) no-repeat;background-size: cover;}
+.btn a:nth-child(5){background: url(images/5.jpg) no-repeat;background-size: cover;}
