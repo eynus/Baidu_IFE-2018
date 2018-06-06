@@ -1,0 +1,60 @@
+body{
+  margin: 0;
+  padding: 0;
+  font-family: "PingFangSC-Regular";
+  background-color: #ccc;
+}
+h1, h2, h3, p{
+  margin: 0;
+  padding: 0;
+}
+.clearfix::after{
+  clear: both;
+  content: '';
+  display: block;
+  height: 0;
+  line-height: 0;
+  visibility: hidden;
+}
+.clearfix{
+  zoom: 1;
+}
+.wrapper{
+  width: 710px;
+  margin: 10px auto;
+  padding: 30px;
+  background-color: #fff;
+  box-shadow: rgba(0, 0, 0, 0.3) 5px 5px 5px;
+}
+.header{
+  text-align: center;
+}
+h1{
+  margin: 20px 0;
+  font-weight: normal;
+}
+h3{
+  font-size: 18px;
+}
+hr{
+  color: #666666;
+}
+p{
+  font-size: 14px;
+}
+ul li{
+  font-size: 14px;
+}
+.left{
+  float: left;
+}
+.right{
+  float: right;
+  text-align: right;
+}
+.c_999{
+  color: #666666;
+}
+.s_12{
+  font-size: 12px;
+}
