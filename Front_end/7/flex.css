@@ -25,7 +25,7 @@ header{
   height: 990px;
   padding-top: 203px;
   margin: 0 auto;
-  background: url(images/backgroundImg1.jpg) no-repeat;
+  background: url(/images/backgroundImg1.jpg) no-repeat;
   -webkit-box-sizing: border-box;
      -moz-box-sizing: border-box;
           box-sizing: border-box;
@@ -179,7 +179,7 @@ header .headerSummary{
   height: 800px;
   padding-top: 177px;
   margin: 0 auto;
-  background: url(images/backgroundImg2.jpg) no-repeat;
+  background: url(/images/backgroundImg2.jpg) no-repeat;
   overflow: hidden;
   position: relative;
   -webkit-box-sizing: border-box;
