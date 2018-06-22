@@ -52,7 +52,7 @@ hr{
   transition: 0.2s ease-in-out;
 }
 .appList .appCurrent{
-  background: url(../images/images15/active.png) -10px 20px no-repeat;
+  background: url(../15/images15/active.png) -10px 20px no-repeat;
 }
 .appMenu{
   font-size: 0;
@@ -143,7 +143,7 @@ hr{
   color: #ffffff;
 }
 .navList .navCurrent{
-  background: url(../images/images15/active.png) -10px 8px no-repeat;
+  background: url(../15/images15/active.png) -10px 8px no-repeat;
 }
 .navList .navCurrent a{
   color: #ffffff;
@@ -157,7 +157,7 @@ hr{
   line-height: 36px;
   width: 32px;
   text-align: center;
-  background: url(../images/images15/bluebg.png) 0 6px no-repeat;
+  background: url(../15/images15/bluebg.png) 0 6px no-repeat;
   position: absolute;
   top: 0;
   right: 30px;
@@ -173,17 +173,17 @@ hr{
   top: 9px;
   left: 30px;
 }
-.navList .iconBox .icon1{background: url(../images/images15/icons_1.png) no-repeat;}
-.navList .iconBox .icon2{background: url(../images/images15/icons_2.png) no-repeat;}
-.navList .iconBox .icon3{background: url(../images/images15/icons_3.png) no-repeat;}
-.navList .iconBox .icon4{background: url(../images/images15/icons_4.png) no-repeat;}
+.navList .iconBox .icon1{background: url(../15/images15/icons_1.png) no-repeat;}
+.navList .iconBox .icon2{background: url(../15/images15/icons_2.png) no-repeat;}
+.navList .iconBox .icon3{background: url(../15/images15/icons_3.png) no-repeat;}
+.navList .iconBox .icon4{background: url(../15/images15/icons_4.png) no-repeat;}
 .navList li.integrations{
   position: relative;
 }
 .navList li.integrations .alert{
   width: 24px;
   height: 36px;
-  background: url(../images/images15/alert.png) 0 6px no-repeat;
+  background: url(../15/images15/alert.png) 0 6px no-repeat;
   position: absolute;
   top: 0;
   right: 30px;
@@ -260,7 +260,7 @@ hr{
   content: '';
   width: 20px;
   height: 20px;
-  background: url(../images/images15/Status2.png) 3px 3px #ffffff no-repeat;
+  background: url(../15/images15/Status2.png) 3px 3px #ffffff no-repeat;
   border-radius: 50%;
   position: absolute;
   right: 0;
@@ -280,7 +280,7 @@ hr{
   width: 11px;
   height: 7px;
   content: '';
-  background: url(../images/images15/dropdown.png);
+  background: url(../15/images15/dropdown.png);
   position: absolute;
   top: 21px;
   right: 0;
@@ -339,7 +339,7 @@ hr{
 .listCurrent .side_userInfo .side_userName{
   color: #2d9bee;
   padding-left: 15px;
-  background: url(../images/images15/StatusB.png) 0 4px no-repeat;
+  background: url(../15/images15/StatusB.png) 0 4px no-repeat;
 }
 
 /* sidebar */
@@ -379,7 +379,7 @@ hr{
   height: 16px;
   border: none;
   outline: none;
-  background: url(../images/images15/search.png);
+  background: url(../15/images15/search.png);
   position: absolute;
   top: 26px;
   right: 44px;
@@ -403,7 +403,7 @@ hr{
 .chatList li:hover .side_userName{
   color: #2d9bee;
   padding-left: 15px;
-  background: url(../images/images15/StatusB.png) 0 4px no-repeat;
+  background: url(../15/images15/StatusB.png) 0 4px no-repeat;
 }
 .userMessages{
   padding-right: 45px;
@@ -422,7 +422,7 @@ hr{
   width: 24px;
   height: 24px;
   text-align: center;
-  background: url(../images/images15/bluebg2.png) no-repeat;
+  background: url(../15/images15/bluebg2.png) no-repeat;
   position: absolute;
   top: 7px;
   right: 20px;
@@ -439,7 +439,7 @@ hr{
   font-size: 18px;
   padding-left: 28px;
   line-height: 70px;
-  background: url(../images/images15/StatusG.png) 138px 32px no-repeat;
+  background: url(../15/images15/StatusG.png) 138px 32px no-repeat;
 }
 .chatTitle{
   height: 70px;
@@ -467,19 +467,19 @@ hr{
   display: block;
   width: 37px;
   height: 32px;
-  background: url(../images/images15/tools.png) no-repeat;
+  background: url(../15/images15/tools.png) no-repeat;
 }
 .tools .upload{
   display: block;
   width: 35px;
   height: 32px;
-  background: url(../images/images15/tools.png) -37px 0 no-repeat;
+  background: url(../15/images15/tools.png) -37px 0 no-repeat;
 }
 .tools .trash{
   display: block;
   width: 37px;
   height: 32px;
-  background: url(../images/images15/tools.png) -72px 0 no-repeat;
+  background: url(../15/images15/tools.png) -72px 0 no-repeat;
 }
 .arrows{
   padding-left: 22px;
@@ -496,13 +496,13 @@ hr{
   display: block;
   width: 38px;
   height: 32px;
-  background: url(../images/images15/arrows.png) 0 0 no-repeat;
+  background: url(../15/images15/arrows.png) 0 0 no-repeat;
 }
 .arrows .right{
   display: block;
   width: 37px;
   height: 32px;
-  background: url(../images/images15/arrows.png) -38px 0 no-repeat;
+  background: url(../15/images15/arrows.png) -38px 0 no-repeat;
 }
 
 /* chatContent */
@@ -589,7 +589,7 @@ hr{
   display: block;
   width: 54px;
   height: 54px;
-  background: url(../images/images15/addIcon.png) no-repeat;
+  background: url(../15/images15/addIcon.png) no-repeat;
   position: absolute;
   top: 0;
   left: 0;
