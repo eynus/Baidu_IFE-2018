@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>Page Title</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" type="text/css" media="screen" href="main.css" />
+  <script src="main.js"></script>
+</head>
+<body>
+  <input id="first-number" type="number" value="0" placeholder="第一个数字">
+    <input id="second-number" type="number" value="0" placeholder="第二个数字">
+    <button id="add-btn">加</button>
+    <button id="minus-btn">减</button>
+    <button id="times-btn">乘</button>
+    <button id="divide-btn">除</button>
+    <p id="result">运算结果</p>
+    <script>
+      /*
+      *  document.getElementById("add-btn").onclick = function(){
+      *    var result = parseFloat(document.getElementById("first-number").value) + parseFloat(document.getElementById("second-number").value);
+      *    document.getElementById("result").innerHTML = result;
+      *  }
+      *  document.getElementById("minus-btn").onclick = function(){
+      *    var result = parseFloat(document.getElementById("first-number").value) - parseFloat(document.getElementById("second-number").value);
+      *    document.getElementById("result").innerHTML = result;
+      *  }
+      *  document.getElementById("times-btn").onclick = function(){
+      *    var result = parseFloat(document.getElementById("first-number").value) * parseFloat(document.getElementById("second-number").value);
+      *    document.getElementById("result").innerHTML = result;
+      *  }
+      *  document.getElementById("divide-btn").onclick = function(){
+      *    var result = parseFloat(document.getElementById("first-number").value) / parseFloat(document.getElementById("second-number").value);
+      *    document.getElementById("result").innerHTML = result;
+      *  }
+      */
+      
+      var firstNumber = document.getElementById("first-number");
+      var secondNumber = document.getElementById("second-number");
+      var addBtn = document.getElementById("add-btn");
+      var minusBtn = document.getElementById("minus-btn");
+      var timesBtn = document.getElementById("times-btn");
+      var divideBtn = document.getElementById("divide-btn");
+      var addNum = document.getElementById("result");
+      addBtn.onclick = function(){
+        var result = parseFloat(firstNumber.value) + parseFloat(secondNumber.value);
+        addNum.innerHTML = result;
+      }
+      minusBtn.onclick = function(){
+        var result = parseFloat(firstNumber.value) - parseFloat(secondNumber.value);
+        addNum.innerHTML = result;
+      }
+      timesBtn.onclick = function(){
+        var result = parseFloat(firstNumber.value) * parseFloat(secondNumber.value);
+        addNum.innerHTML = result;
+      }
+      divideBtn.onclick = function(){
+        var result = parseFloat(firstNumber.value) / parseFloat(secondNumber.value);
+        addNum.innerHTML = result;
+      }
+    </script>
+</body>
+</html>
