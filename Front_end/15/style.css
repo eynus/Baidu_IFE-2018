@@ -3,7 +3,7 @@ body{
   margin: 0;
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
 }
-h1, p{margin: 0;}
+h1, h2, p{margin: 0;}
 ul{margin: 0;padding: 0;list-style: none;}
 hr{
   width: 190px;
@@ -422,76 +422,101 @@ hr{
 .mainContent{
   margin-left: 400px;
 }
-.chat_userName p{
-  color: #585d68;
-  font-size: 18px;
-  padding-left: 28px;
-  line-height: 70px;
-  background: url(../15/images15/StatusG.png) 138px 32px no-repeat;
-}
 .chatTitle{
+  display: -webkit-flex;
+  display: flex;
+  flex-flow: row;
+  justify-content: space-between;
+  white-space: nowrap;
   height: 70px;
+  padding-left: 28px;
+  padding-right: 20px;
   border-bottom: 1px solid #e6e9ec;
-  position: relative;
   -webkit-box-sizing: border-box;
      -moz-box-sizing: border-box;
           box-sizing: border-box;
 }
-.chatTitle .tools{
-  position: absolute;
-  top: 19px;
-  right: 200px;
+.chatTitle h2{
+  color: #585d68;
+  font-size: 18px;
+  font-weight: 500;
+  line-height: 70px;
+  position: relative;
 }
-.chatTitle .arrows{
-  position: absolute;
-  top: 19px;
-  right: 20px;
-}
-.tools a, .arrows a{
-  float: left;
-}
-.tools .user{
+.chatTitle h2::after{
   display: block;
-  width: 37px;
+  width: 8px;
+  height: 8px;
+  content: '';
+  border-radius: 50%;
+  background-color: #1bb934;
+  position: absolute;
+  top: 31px;
+  right: -18px;
+}
+.tools{
+  z-index: 999;
+  display: inline-block;
+  font-size: 0;
+  padding-top: 18px;
+}
+.tools button{
+  margin-left: -1px;
+  border: none;
+  outline: none;
+}
+.tools button:hover{
+  opacity:0.8;
+}
+.toolsImg{
+  width: 109px;
   height: 32px;
   background: url(../15/images15/tools.png) no-repeat;
 }
-.tools .upload{
-  display: block;
-  width: 35px;
-  height: 32px;
-  background: url(../15/images15/tools.png) -37px 0 no-repeat;
-}
-.tools .trash{
-  display: block;
+.toolsItem1{
   width: 37px;
   height: 32px;
-  background: url(../15/images15/tools.png) -72px 0 no-repeat;
+  background-position: 0 0;
+}
+.toolsItem2{
+  width: 37px;
+  height: 32px;
+  background-position: -36px 0;
+}
+.toolsItem3{
+  width: 37px;
+  height: 32px;
+  background-position: -72px 0;
 }
 .arrows{
-  padding-left: 22px;
-  border-left: 1px solid #f0f1f4;
+  display: inline-block;
 }
 .arrows p{
-  float: left;
-  color: #576989;
+  display: inline-block;
+  color: #585d68;
   font-size: 14px;
   line-height: 32px;
-  margin-right: 15px;
+  margin-left: 22px;
+  padding-right: 15px;
+  padding-left: 22px;
+  border-left: 1px solid #f0f1f4;
+  vertical-align: top;
 }
-.arrows .left{
-  display: block;
-  width: 38px;
+.arrowsImg{
+  width: 73px;
   height: 32px;
-  background: url(../15/images15/arrows.png) 0 0 no-repeat;
+  background: url(../15/images15/arrows.png) no-repeat;
 }
-.arrows .right{
-  display: block;
+.arrowsItem1{
   width: 37px;
   height: 32px;
-  background: url(../15/images15/arrows.png) -38px 0 no-repeat;
+  background-position: 0 0;
 }
-
+.arrowsItem2{
+  width: 37px;
+  height: 32px;
+  background-position: -36px 0;
+}
 /* chatContent */
 .chatContent{
   padding-top: 25px;
@@ -521,6 +546,7 @@ hr{
 .userContent .userName{
   color: #585d68;
   font-size: 16px;
+  font-weight: 600;
   margin-bottom: 8px;
 }
 .userContent .userName .time{
