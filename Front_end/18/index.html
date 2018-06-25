@@ -9,10 +9,9 @@
     <button id="trans-btn">转化为二进制</button>
     <p id="result">运算结果</p>
     <script>
-
     var transBtn = document.getElementById("trans-btn");
-    transBtn.onclick = function(){
-        var decNumber = document.getElementById("dec-number");
+    var decNumber = document.getElementById("dec-number");
+    function dec2bin(decNumber){
         var finall = document.getElementById("result");
         if(decNumber.value ==''){
             finall.innerHTML = "请输入数字";
@@ -24,7 +23,9 @@
             finall.innerHTML = parseInt(decNumber.value).toString(2);
         }
     }
-
+    transBtn.onclick = function(){
+        dec2bin(decNumber);
+    }
     </script>
 </body>
 </html>
