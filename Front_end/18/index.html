@@ -4,28 +4,107 @@
     <meta charset="UTF-8">    
     <title>IFE ECMAScript</title>
 </head>
-<body>        
-    <input id="dec-number" type="number" placeholder="输入一个十进制非负整数">
-    <button id="trans-btn">转化为二进制</button>
-    <p id="result">运算结果</p>
+<body>
+    <!-- 编码一 -->
+    <div class="first">
+        <input id="first-number" type="number" value="0" placeholder="第一个数字">
+        <input id="second-number" type="number" value="0" placeholder="第二个数字">
+        <button id="add-btn">加</button>
+        <button id="minus-btn">减</button>
+        <button id="times-btn">乘</button>
+        <button id="divide-btn">除</button>
+        <p id="result">运算结果</p>
+    </div>
     <script>
-    var transBtn = document.getElementById("trans-btn");
-    var decNumber = document.getElementById("dec-number");
-    function dec2bin(decNumber){
-        var finall = document.getElementById("result");
-        if(decNumber.value ==''){
-            finall.innerHTML = "请输入数字";
-        }else if(decNumber.value < 0){
-            finall.innerHTML = "请输入非负整数";
-        }else if(Math.floor(decNumber.value) != decNumber.value){
-            finall.innerHTML = "请输入整数";
-        }else{
-            finall.innerHTML = parseInt(decNumber.value).toString(2);
+        var firstNumber = document.getElementById("first-number");
+        var secondNumber = document.getElementById("second-number");
+        var addBtn = document.getElementById("add-btn");
+        var minusBtn = document.getElementById("minus-btn");
+        var timesBtn = document.getElementById("times-btn");
+        var divideBtn =document.getElementById("divide-btn");
+        var result = document.getElementById("result");
+        console.log("第一个输入框的数据类型为 :" + typeof parseFloat(firstNumber.value)); //检查数据类型
+        console.log("第二个输入框的数据类型为 :" + typeof parseFloat(secondNumber.value));
+        addBtn.onclick = function(){
+            var num1 = parseFloat(firstNumber.value); //parseFloat()获取准确的浮点数和整数
+            var num2 = parseFloat(secondNumber.value);
+            result.innerHTML = num1 + num2;
         }
-    }
-    transBtn.onclick = function(){
-        dec2bin(decNumber);
-    }
+        minusBtn.onclick = function(){
+            var num1 = parseFloat(firstNumber.value);
+            var num2 = parseFloat(secondNumber.value);
+            result.innerHTML = num1 - num2;
+        }
+        timesBtn.onclick = function(){
+            var num1 = parseFloat(firstNumber.value);
+            var num2 = parseFloat(secondNumber.value);
+            result.innerHTML = num1 * num2;
+        }
+        divideBtn.onclick = function(){
+            var num1 = parseFloat(firstNumber.value);
+            var num2 = parseFloat(secondNumber.value);
+            if(num2 == "0"){
+                result.innerHTML = "您的输入有异常";
+                console.log("您的输入有异常");
+            }else{
+                result.innerHTML = num1 / num2;
+            }
+        }
     </script>
+
+    <!-- 编码二 -->
+    <div class="second">
+        <input id="dec-number" type="number" placeholder="输入一个十进制非负整数">
+        <input id="bin-bit" type="number" placeholder="输入转化后二进制数字位数">
+        <button id="trans-btn">转化为二进制</button>
+        <p id="result2">运算结果</p>
+    <script>
+        var decNumber = document.getElementById("dec-number");
+        var transBtn = document.getElementById("trans-btn");
+        function dec2bin(decNumber) {
+    // 在这里实现你的转化方法，注意需要判断输入必须为一个非负整数
+    // 这里是上一个任务的实现
+            var result2 = document.getElementById("result2");
+            var num = parseFloat(decNumber.value);
+            console.log("你输入的数字是 :" + num);
+            if(num < 0 || !Number(num)){
+                result2.innerHTML = "输入必须为一个非负整数";
+            }else{
+                var modulo = "";//显示的初始化变量
+                var finall2 = "";
+                while(num){
+                    modulo = parseInt(num % 2);//Math.floor()向下取整也可以
+                    num = parseInt(num / 2);
+                    finall2 +=  modulo;//等于finall2 = finall2 + modulo
+                    console.log("商为: " + num + "; " + "余数为: " + modulo + "; " + "结果: " + finall2);
+                }
+                var arr = finall2.split(""); //转换为数组（利用数组的倒序方法reverse()）
+                var reverse = arr.reverse();//倒序数组
+                arr = reverse.join("");//join()转换为字符串
+                console.log("转化为二进制: " + arr);
+
+                var binBit = parseInt(document.getElementById("bin-bit").value);
+                if(arr.length > binBit){
+                    return result.innerHTML = "二进制数字位数输入不符合规范，小于真实的二进制数字位数，请重新输入！";
+                }else if(arr.length < binBit){
+                    binBit = binBit - arr.length;
+                    for(var i = 0;i < binBit;i++){
+                        arr="0" + arr;
+                        console.log("二进制位数为: " + arr.length + "; " + "二进制为: " + arr);
+                    }
+                }
+                result2.innerHTML = arr;
+            }
+        }
+        transBtn.onclick = function(){
+            dec2bin(decNumber);
+        }
+    // 实现党点击转化按钮时，将输入的十进制数字转化为二进制，并显示在result的p标签内
+    // 新的需求是，转化显示后的二进制数为bin-bit中输入的数字宽度，例如
+    // dec-number为5，bin-bit为5，则转化后数字为00101
+    // 如果bin-bit小于转化后的二进制本身位数，则使用原本的位数，如dec-number为5，bin-bit为2，依然输出101，但同时在console中报个错
+    // Some coding
+    </script>
+    </div>
 </body>
 </html>
