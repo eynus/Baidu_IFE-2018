@@ -6,7 +6,7 @@
 </head>
 <body>
     <!-- 编码一 -->
-    <div class="first">
+    <div class="box">
         <input id="first-number" type="number" value="0" placeholder="第一个数字">
         <input id="second-number" type="number" value="0" placeholder="第二个数字">
         <button id="add-btn">加</button>
@@ -53,11 +53,12 @@
     </script>
 
     <!-- 编码二 -->
-    <div class="second">
+    <div class="box">
         <input id="dec-number" type="number" placeholder="输入一个十进制非负整数">
         <input id="bin-bit" type="number" placeholder="输入转化后二进制数字位数">
         <button id="trans-btn">转化为二进制</button>
         <p id="result2">运算结果</p>
+    </div>
     <script>
         var decNumber = document.getElementById("dec-number");
         var transBtn = document.getElementById("trans-btn");
@@ -85,7 +86,7 @@
 
                 var binBit = parseInt(document.getElementById("bin-bit").value);
                 if(arr.length > binBit){
-                    return result.innerHTML = "二进制数字位数输入不符合规范，小于真实的二进制数字位数，请重新输入！";
+                    return result2.innerHTML = "二进制数字位数输入不符合规范，小于真实的二进制数字位数，请重新输入！";
                 }else if(arr.length < binBit){
                     binBit = binBit - arr.length;
                     for(var i = 0;i < binBit;i++){
@@ -105,6 +106,75 @@
     // 如果bin-bit小于转化后的二进制本身位数，则使用原本的位数，如dec-number为5，bin-bit为2，依然输出101，但同时在console中报个错
     // Some coding
     </script>
+    
+    <!-- 编码三 -->
+    <div class="box">
+        <button id="three-games">3的倍数</button>
+        <p id="result3"></p>
     </div>
+    <script>
+        var threeGames = document.getElementById("three-games");
+        function Games(){
+            var result3 = document.getElementById("result3");
+            var finall3 = new Array();
+            for(var i = 1;i <= 100; i++){ 
+                var j = i.toString();//转换为字符串，String类型才有查找字符串方法
+                if(j.indexOf("3") > -1 || j % 3 == 0){
+                    finall3.push("PA");
+                    console.log("PA");
+                }else{
+                    finall3.push(i);
+                    console.log(i);
+                }
+                result3.innerHTML = finall3;//默认是逗号隔开，可加可不加join()方法
+            }
+        }
+        threeGames.onclick = function(){
+            Games();
+        }
+    </script>
+
+    <!-- 编码四 -->
+    <div class="box">
+        <button id="times">九九乘法表</button>
+        <table id="result4"></table>
+    </div>
+    <script>
+        var times = document.getElementById("times");
+        
+        function multiplication(){
+            var result4 = document.getElementById("result4");
+            var k = "<tr>";
+            for(var i = 1;i < 10;i++){
+                for(var j = 1;j <= i;j++){ //j<10的时候，完整的九九乘法表
+                    k +="<td>" +  j + "*" + i + "=" + i * j +"</td>";
+                }
+                k += "</tr>";
+            }
+            result4.innerHTML = k;
+        }
+       times.onclick = function(){
+            multiplication();
+       }
+    </script>
+
+    <!-- 编码五 -->
+    <div class="box">
+        <p id="time-now"></p>
+        <p id="hello"></p>
+    </div>
+    <script>
+        var timeNow = document.getElementById("time-now");
+        var hello = document.getElementById("hello");
+        var now = new Date;
+        var myHours = now.getHours();
+        if(myHours >= 0 && myHours < 12){
+            timeNow.innerHTML ="现在是凌晨0点到12点之间，上午好！";
+        }else if(myHours >= 12 && myHours < 18){
+            timeNow.innerHTML ="现在是下午12点到18点之间，下午好！";
+        }else if(myHours >= 18 ** myHours <=24){
+            imeNow.innerHTML ="现在是凌晨18点到24点之间，晚上好！";
+        }
+    </script>
 </body>
 </html>
