@@ -42,11 +42,11 @@
       var li = document.getElementsByTagName("li");
       var array = new Array();  //var array = [];两者一样显示的创建数组
       for(var i=0; i<li.length; i++){  //循环所有li标签
-        if(li[i].nodeType == 1){  //检查节点的类型是否为元素节点(这里没必要，以后估计常用于检测吧)
-          array.push(li[i].innerHTML); //返回li元素的子节点(包括元素、注释和文本节点);其他innerHTML、outerHTML、innerText、textContent等等属性，也可以尝试看看有什么不一样吧
+        if(li[i].nodeType == 1){  //检查节点的类型是否为元素节点
+          array.push(li[i].innerHTML); //返回li元素的子节点
         }
       }
-      return array.join(" , ");//join()方法不是必须;为了更好的区分，使用join()方法，拉大空格
+      return array;//为了更好的区分，使用join()方法，拉大空格
     }
     btn.onclick = function(){
       var result = document.getElementById("result");
