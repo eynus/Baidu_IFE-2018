@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Page Title</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" type="text/css" media="screen" href="main.css" />
+</head>
+<body>
+    <!-- 编码一 -->
+    <div class="box">
+        <input id="name" type="text" />
+        <button id="submit-btn">Submit</button>
+        <p id="para"></p>
+    </div>
+    <script>
+        //跨浏览器方案
+        var EventUtil = {
+            addHandler: function(element,type,handler){
+                if(element.addEventListener){ //DOM2级事件处理程序
+                    element.addEventListener(type,handler,false);
+                }else if(element.attachEvent){ //IE事件处理程序
+                    element.attachEvent("on"+type,handler);
+                }else{ //DOM0级事件处理程序
+                    element["on"+type] = handler;
+                }
+            },
+            getEvent: function(event){
+                return event ? event : window.event; //IE:DOM0级方法添加事件处理程序时，event对象作为window对象的一个属性
+            }
+            
+        }
+        var submitBtn = document.getElementById("submit-btn");
+
+        EventUtil.addHandler(submitBtn,"click",function(){ //调用EventUtil对象的addHandler方法，添加事件处理程序
+            var name =document.getElementById("name");
+            var para = document.getElementById("para");
+            para.innerHTML = name.value;
+            console.log(name.value);
+        });
+
+        EventUtil.addHandler(window,"keyup",function(event){ //event对象中包含所有与事件有关的信息
+            event = EventUtil.getEvent(event);
+            var name =document.getElementById("name");
+            var para = document.getElementById("para");
+            if(event.keyCode == "13"){ //keyCode属性保存着对应的键码
+                para.innerHTML = name.value;
+                console.log(name.value);
+            }
+        });
+        
+        EventUtil.addHandler(window,"keyup",function(event){
+            event = EventUtil.getEvent(event);
+            var name =document.getElementById("name");
+            var para = document.getElementById("para");
+            if(event.keyCode == "27"){
+                name.value = ""; //清除输入框的内容
+                console.log(name.value);
+            }
+        })
+    </script>
+    <!-- 编码二 -->
+</body>
+</html>
