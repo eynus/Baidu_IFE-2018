@@ -5,9 +5,42 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <title>Page Title</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" type="text/css" media="screen" href="main.css" />
+    <style>
+        .box{
+            border: 1px solid #cccccc;
+            margin: 0 100px;
+        }
+        /* 编码二样式 */
+        select {
+            display: none;
+        }
+        .current {
+            display:inline;
+        }
+        
+        /* 编码三样式 */
+        .palette {
+            margin: 0;
+            padding: 0;
+            list-style: none;
+        }
+        .palette li {
+            width: 40px;
+            height: 40px;
+            border: 1px solid #000;
+            cursor: pointer;
+        }
+        .img{
+            background-image: url(images/erik_ce204002.jpg);
+            background-repeat: no-repeat;
+			background-position: 0 -480px;
+            width: 480px;
+            height: 480px;
+        }
+    </style>
 </head>
 <body>
+
     <!-- 编码一 -->
     <div class="box">
         <input id="name" type="text" />
@@ -15,6 +48,7 @@
         <p id="para"></p>
     </div>
     <script>
+
         //跨浏览器方案
         var EventUtil = {
             addHandler: function(element,type,handler){
@@ -26,11 +60,16 @@
                     element["on"+type] = handler;
                 }
             },
+
             getEvent: function(event){
                 return event ? event : window.event; //IE:DOM0级方法添加事件处理程序时，event对象作为window对象的一个属性
+            },
+
+            getTarget: function(event){
+                return event.target || event.srcElement; //IE:使用event.srcElement 指定目标更为保险
             }
-            
-        }
+        };
+
         var submitBtn = document.getElementById("submit-btn");
 
         EventUtil.addHandler(submitBtn,"click",function(){ //调用EventUtil对象的addHandler方法，添加事件处理程序
@@ -49,7 +88,7 @@
                 console.log(name.value);
             }
         });
-        
+
         EventUtil.addHandler(window,"keyup",function(event){
             event = EventUtil.getEvent(event);
             var name =document.getElementById("name");
@@ -58,8 +97,184 @@
                 name.value = ""; //清除输入框的内容
                 console.log(name.value);
             }
-        })
+        });
+
     </script>
+
     <!-- 编码二 -->
+    <div class="box">
+        <label>
+            <input id="school" name="status" type="radio">
+            School
+        </label>
+        <label>
+            <input id="company" name="status" type="radio">
+            Company
+        </label>
+
+        <select id="school-select">        
+            <option>北京邮电大学</option>
+            <option>黑龙江大学</option>
+            <option>华中科技大学</option>
+        </select>
+
+        <select id="company-select">        
+            <option>百度</option>
+            <option>爱奇艺</option>        
+        </select>
+        </div>
+    <script>
+        var school = document.getElementById("school");
+        var company = document.getElementById("company");
+        console.log(typeof school);
+        console.log(typeof company);
+
+        EventUtil.addHandler(school,"focus",function(){ //focus事件
+            var schoolSelect = document.getElementById("school-select");
+            var companySelect = document.getElementById("company-select");
+            schoolSelect.setAttribute("class","current"); 
+            companySelect.setAttribute("class","");
+        });
+
+        EventUtil.addHandler(company,"focus",function(){
+            var schoolSelect = document.getElementById("school-select");
+            var companySelect = document.getElementById("company-select");
+            schoolSelect.setAttribute("class","");
+            companySelect.setAttribute("class","current");
+        });
+
+    </script>
+
+    <!-- 编码三 -->
+    <div class="box">
+        <ul class="palette">
+            <li id="crimson" style="background-color:crimson"></li>
+            <li id="bisque" style="background-color:bisque"></li>
+            <li id="blueviolet" style="background-color:blueviolet"></li>
+            <li id="coral" style="background-color:coral"></li>
+            <li id="chartreuse" style="background-color:chartreuse"></li>
+            <li id="darkolivegreen" style="background-color:darkolivegreen"></li>
+            <li id="cyan" style="background-color:cyan"></li>
+            <li id="color#194738" style="background-color:#194738"></li>        
+        </ul>
+
+        <p class="color-picker"></p>
+    </div>
+
+    <script>
+        /* 原代码
+        *var list = document.querySelectorAll("li");
+        *for (var i = 0, len = list.length; i < len; i++) {
+        *    list[i].onclick = function(e) {
+        *        var t = e.target;
+        *        var c = t.style.backgroundColor;
+        *        var p = document.getElementsByClassName("color-picker")[0]
+        *        p.innerHTML = c;
+        *        p.style.color = c;
+        *    }
+        *}
+        */
+        //事件委托
+        var palette = document.getElementsByClassName("palette")[0]; //DOM树最高的层次委托事件
+        EventUtil.addHandler(palette,"click",function(event){ //一个事件处理程序
+            event = EventUtil.getEvent(event);
+            var target = EventUtil.getTarget(event);
+            var color = target.style.backgroundColor;
+            var colorPicker = document.getElementsByClassName("color-picker")[0];
+            //第二次尝试，原来可以这样子
+            colorPicker.innerHTML = color;
+            colorPicker.style.color = color;
+            /* 第一次尝试，用switch，发现重复代码多
+            switch(target.id){
+                case "crimson":
+                    colorPicker.innerHTML = color;
+                    colorPicker.style.color = color;
+                    break;
+                case "bisque":
+                    colorPicker.innerHTML = color;
+                    colorPicker.style.color = color;
+                    break;
+                case "blueviolet":
+                    colorPicker.innerHTML = color;
+                    colorPicker.style.color = color;
+                    break;
+                case "coral":
+                    colorPicker.innerHTML = color;
+                    colorPicker.style.color = color;
+                    break;
+                case "chartreuse":
+                    colorPicker.innerHTML = color;
+                    colorPicker.style.color = color;
+                    break;
+                case "darkolivegreen":
+                    colorPicker.innerHTML = color;
+                    colorPicker.style.color = color;
+                    break;
+                case "cyan":
+                    colorPicker.innerHTML = color;
+                    colorPicker.style.color = color;
+                    break;
+                case "color#194738":
+                    colorPicker.innerHTML = color;
+                    colorPicker.style.color = color;
+                    break;
+            }
+             */
+        });
+       
+    </script>
+   
+   <!-- 编码四 -->
+   <div class="box">
+        <div id="fade-obj" style="width:300px;height:300px;background:#000"></div>
+        <button id="fade-btn">淡出</button>
+   </div>
+   <script>
+       
+       var fadeBtn = document.getElementById("fade-btn");
+       EventUtil.addHandler(fadeBtn,"click",function(event){
+           event = EventUtil.getEvent(event);
+           var fadeObj = document.getElementById("fade-obj");
+           if(fadeBtn.innerHTML == "淡出"){
+                fadeBtn.disabled = "disabled"; 
+                fadeObj.style.transition = "opacity 2s";
+                fadeObj.style.opacity = "0";
+                setTimeout(function(){
+                    fadeBtn.innerHTML = "淡入";
+                    fadeBtn.disabled = "";
+                },2000);
+           }else{
+                fadeBtn.disabled = "disabled";
+                fadeObj.style.transition = "opacity 2s";
+                fadeObj.style.opacity = "1";
+                setTimeout(function(){
+                    fadeBtn.innerHTML = "淡出";
+                    fadeBtn.disabled = "";
+                },2000);
+           }
+       });
+    </script>
+
+    <!-- 编码五 -->
+    <div class="box">
+        <div id="image" class="img"></div>
+    </div>
+    <script>
+        var image = document.getElementById("image");
+        var y = 0;
+        setInterval(function(){
+            if (y > -7680 && y <= 0) {
+                y = y - 480;
+                image.style.backgroundPositionY = y + "px";
+            } else if (y == -7680) {
+                y = -y; //改变取值范围，实现正反播放
+                image.style.backgroundPositionY = -y + "px";
+            } else {
+                y = y - 480;
+                image.style.backgroundPositionY = -y + "px";
+            }
+            console.log(y);
+        },100);
+    </script>
 </body>
 </html>
