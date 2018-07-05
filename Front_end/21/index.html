@@ -130,26 +130,29 @@
         console.log(typeof school);
         console.log(typeof company);
 
-        EventUtil.addHandler(school,"focus",function(){ //focus事件
+        EventUtil.addHandler(school,"change",function(){ //change事件正常，focus事件safari失效
             var schoolSelect = document.getElementById("school-select");
             var companySelect = document.getElementById("company-select");
-            /* safari 不显示
+            /* class 特性添加
             schoolSelect.setAttribute("class","current"); 
             companySelect.setAttribute("class","");
             */
             schoolSelect.style.display = "inline"; //select 是内联元素
             companySelect.style.display = "";
+            
         });
 
-        EventUtil.addHandler(company,"focus",function(){
+        EventUtil.addHandler(company,"change",function(){ //change事件正常，focus事件safari失效
             var schoolSelect = document.getElementById("school-select");
             var companySelect = document.getElementById("company-select");
-            /*safari 不显示
+            /*class 特性添加
             schoolSelect.setAttribute("class","");
             companySelect.setAttribute("class","current");
             */
+            /*
             schoolSelect.style.display = ""; 
             companySelect.style.display = "inline"; //select 是内联元素
+            */
         });
 
     </script>
