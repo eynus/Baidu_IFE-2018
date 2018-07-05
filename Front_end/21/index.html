@@ -133,15 +133,23 @@
         EventUtil.addHandler(school,"focus",function(){ //focus事件
             var schoolSelect = document.getElementById("school-select");
             var companySelect = document.getElementById("company-select");
+            /* safari 不显示
             schoolSelect.setAttribute("class","current"); 
             companySelect.setAttribute("class","");
+            */
+            schoolSelect.style.display = "inline"; //select 是内联元素
+            companySelect.style.display = "";
         });
 
         EventUtil.addHandler(company,"focus",function(){
             var schoolSelect = document.getElementById("school-select");
             var companySelect = document.getElementById("company-select");
+            /*safari 不显示
             schoolSelect.setAttribute("class","");
             companySelect.setAttribute("class","current");
+            */
+            schoolSelect.style.display = ""; 
+            companySelect.style.display = "inline"; //select 是内联元素
         });
 
     </script>
