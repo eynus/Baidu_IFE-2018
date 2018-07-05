@@ -269,20 +269,19 @@
     <div class="box">
         <div id="image" class="img"></div>
     </div>
+    
     <script>
         var image = document.getElementById("image");
-        var y = 0;
+        var y = 0; //高度从0开始
+        var dir = 1; //方向
         setInterval(function(){
-            if (y > -7680 && y <= 0) {
-                y = y - 480;
-                image.style.backgroundPositionY = y + "px";
-            } else if (y == -7680) {
-                y = -y; //改变取值范围，实现正反播放
-                image.style.backgroundPositionY = -y + "px";
-            } else {
-                y = y - 480;
-                image.style.backgroundPositionY = -y + "px";
-            }
+            y -= 480 * dir; //y = y - 480 * dir; 
+            if(y <= -7680){ 
+                dir *= -1; //dir = dir * -1; 到达底部后，调整方向
+            }else if(y == 0){ 
+                dir *= -1; //dir = dir * -1; 到达顶部后，调整方向
+            };
+            image.style.backgroundPositionY = y +"px";
             console.log(y);
         },100);
     </script>
