@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Page Title</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <style>
+        button{
+            display: block;
+            margin: 10px;
+        }
+    </style>
+    <script>
+        //EventUtil 对象（跨浏览器解决方案）
+        var EventUtil = {
+            //添加事件处理程序
+            addHandler: function(element,type,handler){
+                if(element.addEventListener){ //如果有DOM2级方法
+                    element.addEventListener(type,handler,false);
+                }else if(element.attachEvent){ //如果是IE，则使用attachEvent()添加事件处理程序
+                    element.attachEvent("on"+type,handler);
+                }else{ //如果以上都没有，则使用DOM0级方法
+                    element["on"+type] = handler;
+                }
+            }
+        };
+    </script>
+</head>
+<body>
+    <!-- 编码一 -->
+    <div>
+        <label>Number A:<input id="radio-a" type="radio" name="math-obj" value="a"></label><input id="num-a" type="text">
+        <label>Number B:<input id="radio-b" type="radio" name="math-obj" value="b"></label><input id="num-b" type="text">
+    </div>
+    <div id="compute">
+        <button id="btn1">判断当前选中的输入框输入内容是否为数字</button>
+        <button id="btn2">把 A 四舍五入为 B 个小数位数的数字</button>
+        <button id="btn3">当前选中数字的绝对值</button>
+        <button id="btn4">对当前选中的数字进行上舍入</button>
+        <button id="btn5">对当前选中的数字进行下舍入</button>
+        <button id="btn6">把当前选中的数字四舍五入为最接近的整数</button>
+        <button id="btn7">返回 A 和 B 中的最高值</button>
+        <button id="btn8">返回 A 和 B 中的最低值</button>        
+    </div>
+    <p id="result"></p>
+    <script>
+        var radioA = document.getElementById("radio-a");
+        var radioB = document.getElementById("radio-b");
+
+        //使用EventUtil 对象
+        //取值btn1,btn3,btn4,btn5,btn6
+        function selectInput(radio,number){
+            EventUtil.addHandler(radio,"change",function(){
+                var num = document.getElementById(number);
+                var result = document.getElementById("result");
+                var button = document.querySelectorAll("button");
+                for( var i = 0,len = button.length; i<len; i++){ //循环所有button元素
+                    var btn = button[i];
+                    //btn1,btn3,btn4,btn5,btn6的事件
+                    switch(btn.id){ //判断 id 
+                        case "btn1": //id为btn1时
+                            EventUtil.addHandler(btn,"click",function(){
+                                if(!isNaN(parseFloat(num.value))){ //输入框的值不是NaN，判断为数字
+                                    result.innerHTML = "当前选中的输入框输入内容是'数字'。";
+                                    console.log(parseFloat(num.value));
+                                }else{
+                                    result.innerHTML = "当前选中的输入框输入内容是'不是数字'。";
+                                    console.log(parseFloat(num.value));
+                                }
+                            });
+                            break;
+                        case "btn3": //id为btn3时
+                            EventUtil.addHandler(btn,"click",function(){
+                                if(!isNaN(parseFloat(num.value))){ //输入框的值不是NaN，判断为数字
+                                    result.innerHTML = Math.abs(parseFloat(num.value)); //Math.abs()求绝对值
+                                    console.log(parseFloat(num.value));
+                                }else{
+                                    result.innerHTML = "当前选中的输入框输入内容是'不是数字'。";
+                                    console.log(parseFloat(num.value));
+                                }
+                            });
+                            break;
+                        case "btn4": //id为btn4时
+                            EventUtil.addHandler(btn,"click",function(){
+                                if(!isNaN(parseFloat(num.value))){ //输入框的值不是NaN，判断为数字
+                                    result.innerHTML = Math.ceil(parseFloat(num.value)); //Math.ceil()向上求整
+                                    console.log(parseFloat(num.value));
+                                }else{
+                                    result.innerHTML = "当前选中的输入框输入内容是'不是数字'。";
+                                    console.log(parseFloat(num.value));
+                                }
+                            });
+                            break;
+                        case "btn5": //id为btn5时
+                            EventUtil.addHandler(btn,"click",function(){
+                                if(!isNaN(parseFloat(num.value))){ //输入框的值不是NaN，判断为数字
+                                    result.innerHTML = Math.floor(parseFloat(num.value)); //Math.floor()向下求整
+                                    console.log(parseFloat(num.value));
+                                }else{
+                                    result.innerHTML = "当前选中的输入框输入内容是'不是数字'。";
+                                    console.log(parseFloat(num.value));
+                                }
+                            });
+                            break;
+                        case "btn6": //id为btn6时
+                            EventUtil.addHandler(btn,"click",function(){
+                                if(!isNaN(parseFloat(num.value))){ //输入框的值不是NaN，判断为数字
+                                    result.innerHTML = Math.round(parseFloat(num.value)); //Math.round()四舍五入
+                                    console.log(parseFloat(num.value));
+                                }else{
+                                    result.innerHTML = "当前选中的输入框输入内容是'不是数字'。";
+                                    console.log(parseFloat(num.value));
+                                }
+                            });
+                            break;
+                    }
+                }
+            });
+
+        }
+        //取值btn1,btn3,btn4,btn5,btn6
+        var numA = document.getElementById("num-a");
+        var numB = document.getElementById("num-b");
+        function minMax(numberA,numberB){
+            var button = document.querySelectorAll("button");
+            var result = document.getElementById("result");
+            for( var i = 0,len = button.length; i<len; i++){ //循环所有button元素
+                var btn = button[i];
+                //btn1,btn3,btn4,btn5,btn6事件
+                switch(btn.id){ //判断 id 
+                    case "btn2": //id为btn2时
+                        EventUtil.addHandler(btn,"click",function(){
+                            if(isNaN(parseFloat(numberA.value)) && isNaN(parseFloat(numberB.value))){ //numberA 和 numberB 均为NaN
+                                result.innerHTML = "Number A 和 Number B 输入框都不是'数字'，请输入正确的数字。";
+                            }else if(isNaN(parseFloat(numberA.value))){ //numberA 为NaN
+                                result.innerHTML = "Number A 输入框输入内容是: '不是数字'，请重新输入数字。";
+                            }else if(isNaN(parseFloat(numberB.value))){ //numberB 为NaN
+                                result.innerHTML = "Number B 输入框输入内容是: '不是数字'，请重新输入数字。";
+                            }else{
+                                result.innerHTML = parseFloat(numberA.value).toFixed(parseFloat(numberB.value)); //toFixed()按指定的小数位返回数值，并四舍五入
+                                console.log(parseFloat(numberA.value).toFixed(parseFloat(numberB.value)));
+                            }
+                        });
+                        break;
+                    case "btn7": //id为btn7时
+                        EventUtil.addHandler(btn,"click",function(){
+                            if(isNaN(parseFloat(numberA.value)) && isNaN(parseFloat(numberB.value))){ //numberA 和 numberB 均为NaN
+                                result.innerHTML = "Number A 和 Number B 输入框都不是'数字'，请输入正确的数字。";
+                            }else if(isNaN(parseFloat(numberA.value))){ //numberA 为NaN
+                                result.innerHTML = "Number A 输入框输入内容是: '不是数字'，请重新输入数字。";
+                            }else if(isNaN(parseFloat(numberB.value))){ //numberB 为NaN
+                                result.innerHTML = "Number B 输入框输入内容是: '不是数字'，请重新输入数字。";
+                            }else{
+                                result.innerHTML = Math.max(parseFloat(numberA.value),parseFloat(numberB.value)); //Math.max()返回最大值
+                                console.log(Math.max(parseFloat(numberA.value),parseFloat(numberB.value)));
+                            }
+                        });
+                        break;
+                    case "btn8": //id为btn8时
+                        EventUtil.addHandler(btn,"click",function(){
+                            if(isNaN(parseFloat(numberA.value)) && isNaN(parseFloat(numberB.value))){
+                                result.innerHTML = "Number A 和 Number B 输入框都不是'数字'，请输入正确的数字。";
+                            }else if(isNaN(parseFloat(numberA.value))){ //numberA 为NaN
+                                result.innerHTML = "Number A 输入框输入内容是: '不是数字'，请重新输入数字。";
+                            }else if(isNaN(parseFloat(numberB.value))){ //numberB 为NaN
+                                result.innerHTML = "Number B 输入框输入内容是: '不是数字'，请重新输入数字。";
+                            }else{
+                                result.innerHTML = Math.min(parseFloat(numberA.value),parseFloat(numberB.value)); //Math.min()返回最小值
+                                console.log(Math.min(parseFloat(numberA.value),parseFloat(numberB.value)));
+                            }
+                        });
+                        break;
+                }
+            }
+        }
+        EventUtil.addHandler(window,"load",function(){
+            selectInput(radioA,"num-a");
+            selectInput(radioB,"num-b");
+            minMax(numA,numB);
+        });
+    </script>
+</body>
+</html>
