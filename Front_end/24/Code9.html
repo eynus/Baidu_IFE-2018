@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Page Title</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" type="text/css" media="screen" href="main.css" />
+    <script src="main.js"></script>
+</head>
+<body>
+    <script>
+        var arr = [43, 54, 4, -4, 84, 100, 58, 27, 140];
+        //将上面数组分别按从大到小以及从小到大进行排序后在console中输出
+        function compare(value1,value2){
+            return value2 - value1;
+        }
+        function compare2(value1,value2){
+            return value1 - value2;
+        }
+        console.log(arr.sort(compare));
+        console.log(arr.sort(compare2));
+
+
+
+        var arr2 = ['apple', 'dog', 'cat', 'car', 'zoo', 'orange', 'airplane'];
+        //将上面数组分别按字母顺序a-z及z-a进行排序，在console中输出
+        console.log(arr2.sort());
+        console.log(arr2.reverse());
+
+        var arr3 = [[10, 14], [16, 60], [7, 44], [26, 35], [22, 63]];
+        //将上面的二维数组，按照每个元素中第二个数从大到小的顺序进行排序输出，输出结果应该为：
+        function compare3(value1,value2){
+            return value2[1] - value1[1];
+        }
+        console.log(arr3.sort(compare3));
+        
+        [[22, 63], [16, 60], [7, 44], [26, 35], [10, 14]]
+
+        var arr4 = [
+            {
+                id: 1,
+                name: 'candy',
+                value: 40
+            }, {
+                id: 2,
+                name: 'Simon',
+                value: 50
+            }, {
+                id: 3,
+                name: 'Tony',
+                value: 45
+            }, {
+                id: 4,
+                name: 'Annie',
+                value: 60
+            }
+        ];
+
+        function compareValue(value1,value2){
+            return value2.value - value1.value;
+        }
+        console.log(arr4.sort(compareValue));
+        
+    </script>
+</body>
+</html>
