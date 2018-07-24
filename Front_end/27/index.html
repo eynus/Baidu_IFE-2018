@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Page Title</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <style>
+        #image{
+            width: 100px;
+            height: 100px;
+            position: relative;
+            z-index: -999;
+        }
+    </style>
+</head>
+<body>
+    <button id="goBtn">Go</button>
+    <button id="turnleftBtn">TurnLeft</button>
+    <button id="turnrightBtn">TurnRight</button>
+    <img id="image" src="images/show-3.png" />
+    <script>
+        /* 测试
+        var step = 0;
+        function go(){
+            step += 1;
+            console.log(step);
+        }
+        go();
+        go();
+        go();
+        */
+        
+        var goBtn = document.getElementById("goBtn");
+        var turnleftBtn = document.getElementById("turnleftBtn");
+        var turnrightBtn = document.getElementById("turnrightBtn");
+        var image = document.getElementById("image");
+        var t = 0; //var top 为window 属性，只能换名称
+        var left = 0;
+        var range = 50; //移动幅度
+        var dir = 0; //方向
+        function go(){
+            switch(dir){
+                case 0: //默认向右
+                left += range;
+                image.style.left = left + "px";
+                console.log("右移" + image.style.left);
+                break;
+                case 90: //向下
+                t += range;
+                image.style.top = t + "px";
+                console.log("下移" + image.style.top);
+                break;
+                case 180: //向左
+                left -= range;
+                image.style.left = left + "px";
+                console.log("左移" + image.style.left);
+                break;
+                case 270: //向上
+                t -= range;
+                image.style.top = t + "px";
+                console.log("上移" + image.style.top);
+                break;
+                default: break;
+            }
+        }
+        function TurnLeft(){
+            dir += 90; //4个方向
+            if(dir == 360){ //方向控制在360度内
+                dir = 0;
+            }
+            image.style.transform = "rotate("+dir+"deg)";
+            console.log("旋转" + dir + "度");
+        }
+        function TurnRight(){
+            TurnLeft();
+            TurnLeft();
+            TurnLeft();
+        }
+        goBtn.onclick = function(){
+            go();
+        }
+        turnleftBtn.onclick = function(){
+            TurnLeft();
+        }
+        turnrightBtn.onclick = function(){
+            TurnRight();
+        }
+
+        function Go(){
+            console.log("Go");
+        }
+        function GoSteps(n) {
+            console.log(n);
+            if (n === undefined) {
+                return Go();
+            }
+            if (n < 0){
+                return false
+            }
+            n = Math.floor(n);
+            while (n--) {
+                Go();
+            }
+        }
+        GoSteps(10); // Go 10次
+        GoSteps(1); // Go 1次
+        GoSteps(); // Go 1次，认为缺少参数时，默认参数为1
+        GoSteps(0);  // 0次
+        GoSteps(-1);  // 0次
+        GoSteps(1.4);  // Go 1次
+        GoSteps(1.6);  // Go 1次
+        GoSteps(-1);  // 0次
+        GoSteps(true);  // Go 1次
+        GoSteps(false);  // 0次
+        GoSteps("Test");  // 0次
+        GoSteps(NaN);  // 0次
+        GoSteps(null);  // 0次
+    </script>
+</body>
+</html>

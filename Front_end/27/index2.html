@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Page Title</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+</head>
+<body>
+    <div id="clock"></div>
+    <div id="clock2"></div>
+    <script>
+        var clock = document.getElementById("clock");
+        var clock2 = document.getElementById("clock2");
+        function nowTime(){
+            var now = new Date();
+            var year = now.getFullYear();
+            var month = now.getMonth() + 1;
+            var days = now.getDate();
+            var weeks = now.getDay();
+            var hours = now.getHours();
+            var minutes = now.getMinutes();
+            var seconds = now.getSeconds();
+            //两位数显示数字(补0)
+            month = doubleDigit(month);
+            days = doubleDigit(days);
+            hours = doubleDigit(hours);
+            minutes = doubleDigit(minutes);
+            seconds = doubleDigit(seconds);
+            weeksCN = weekCN(weeks);
+            weeksUS = weekUS(weeks);
+            /*
+            //中文星期
+            var weeksCN = ["星期天","星期一","星期二","星期三","星期四","星期五","星期六"];
+            //英文星期
+            var weeksUS = ["Sunday","Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"];
+            */
+            clock.innerHTML = year + "年" + month + "月" + days + "日 " + /*weeksCN[weeks]*/weeksCN + " " + hours + ":" + minutes + ":" + seconds;
+            clock2.innerHTML = year + "-" + month + "-" + days + " " + /*weeksUS[weeks]*/weeksUS + " " + hours + ":" + minutes + ":" + seconds;
+            setTimeout("nowTime()",1000);
+        }
+        nowTime();
+        //两位数显示数字(补0)
+        function doubleDigit(n){
+            if(n < 10){
+                n = "0" + n;
+            }
+            return n;
+        }
+        //中文星期
+        function weekCN(n){
+            switch(n){
+                case 0:
+                    return "星期天";
+                    break;
+                case 1:
+                    return "星期一";
+                    break;
+                case 2:
+                    return "星期二";
+                    break;
+                case 3:
+                    return "星期三";
+                    break;
+                case 4:
+                    return "星期四";
+                    break;
+                case 5:
+                    return "星期五";
+                    break;
+                case 6:
+                    return "星期六";
+                    break;
+                default: break;
+            }
+        }
+        //英文星期
+        function weekUS(n){
+            switch(n){
+                case 0:
+                    return "Sunday";
+                    break;
+                case 1:
+                    return "Monday";
+                    break;
+                case 2:
+                    return "Tuesday";
+                    break;
+                case 3:
+                    return "Wednesday";
+                    break;
+                case 4:
+                    return "Thursday";
+                    break;
+                case 5:
+                    return "Friday";
+                    break;
+                case 6:
+                    return "Saturday";
+                    break;
+                default: break;
+            }
+        }
+    </script>
+</body>
+</html>
