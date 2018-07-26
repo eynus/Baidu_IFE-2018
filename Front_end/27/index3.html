@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Page Title</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+</head>
+<body>
+    <select id="year-select">
+        <option value="2000">2000</option>
+        <option value="2001">2001</option>
+        <option value="2002">2002</option>
+        ……
+        <option value="2032">2002</option>
+    </select>
+
+    <select id="month-select">
+        <option value="1">1</option>
+        <option value="2">2</option>
+        ……
+        <option value="12">12</option>
+    </select>
+
+    <select id="day-select">
+        <option value="1">1</option>
+        <option value="2">2</option>
+        ……
+        <option value="31">31</option>
+    </select>
+
+    <select id="hour-select">
+        <option value="0">00</option>
+        <option value="1">01</option>        
+        ……
+        <option value="23">23</option>
+    </select>
+
+    <select id="minute-select">
+        <option value="0">0</option>
+        <option value="1">1</option>
+        ……
+        <option>59</option>
+    </select>
+
+    <select id="second-select">
+        <option value="0">0</option>
+        <option value="1">1</option>
+        ……
+        <option>59</option>
+    </select>
+
+    <p id="result-wrapper">现在距离 2001年1月1日星期X HH:MM:SS 还有 X 天 X 小时 X 分 X 秒</p>
+    <p id="count"></p>
+    <p>移动: <a href="https://zaorro.github.io/Baidu_IFE-2018/Front_end/27/index1.html">https://zaorro.github.io/Baidu_IFE-2018/Front_end/27/index1.html</a></p>
+    <p>日期显示: <a href="https://zaorro.github.io/Baidu_IFE-2018/Front_end/27/index2.html">https://zaorro.github.io/Baidu_IFE-2018/Front_end/27/index2.html</a></p>
+    <p>倒计时: <a href="https://zaorro.github.io/Baidu_IFE-2018/Front_end/27/index3.html">https://zaorro.github.io/Baidu_IFE-2018/Front_end/27/index3.html</a></p>
+    <script>
+        var body = document.querySelector("body");
+        var yearSelect = document.getElementById("year-select");
+        var monthSelect = document.getElementById("month-select");
+        var daySelect = document.getElementById("day-select");
+        var hourSelect = document.getElementById("hour-select");
+        var minuteSelect = document.getElementById("minute-select");
+        var secondSelect = document.getElementById("second-select");
+        var resultWrapper = document.getElementById("result-wrapper");
+        var count = document.getElementById("count");
+
+        //创建年月日时分秒
+        function createData(select,start,end){
+            select.innerHTML = "";//重置select
+            for(var i = start, j = end; i <= j; i++){
+                var option = document.createElement("option");
+                option.innerHTML = i;
+                option.value = i;
+                select.appendChild(option);
+            }
+        }
+
+        createData(yearSelect,1900,2020);//创建年份
+        createData(monthSelect,1,12);//创建月份
+        createData(daySelect,1,31);//创建日期
+        createData(hourSelect,0,23);//创建小时
+        createData(minuteSelect,0,59);//创建分钟
+        createData(secondSelect,0,59);//创建秒
+
+        //判断天数
+        function getDay(n){
+            var date = parseInt(n); //转为number
+            switch(date){
+                case 1: case 3: case 5: case 7: case 8: case 10: case 12:
+                    return 31;
+                    break;
+                case 4: case 6: case 9: case 11:
+                    return 30;
+                    break;
+                case 2: 
+                    if(yearSelect.value % 4 === 0 && yearSelect.value % 100 !=0 || yearSelect.value % 400 ==0){
+                        return 29;
+                    }else{
+                        return 28;
+                    }
+                    break;
+                default: break;
+            }
+        }
+
+        //根据月份判断日期
+        function createDay(n){
+            var days = getDay(n);
+            daySelect.innerHTML = "";//重置天数
+            for(var i = 1, j = days; i <= j; i++){
+                var option = document.createElement("option");
+                option.innerHTML = i;
+                option.value = i;
+                daySelect.appendChild(option);
+            }
+        }
+
+        //添加change事件
+        yearSelect.addEventListener("change",function(){
+            createDay(monthSelect.value);
+        },false);
+        monthSelect.addEventListener("change",function(){
+            createDay(monthSelect.value);
+        },false);
+        
+        //倒计时
+        function countDown(){
+            var now = new Date();
+            var year = now.getFullYear();
+            var month = now.getMonth();
+            var days = now.getDate();
+            var hours = now.getHours();
+            var minutes = now.getMinutes();
+            var seconds = now.getSeconds();
+            var times = now.getTime();//转换为毫秒
+
+            //获取select时间
+            var selectTimes = new Date(yearSelect.value, monthSelect.value, daySelect.value, hourSelect.value, minuteSelect.value, secondSelect.value);
+            var currentTimes = selectTimes.getTime();//转换为毫秒
+            
+            //计算时差
+            var difftimes = parseInt((currentTimes - times) / 1000); //相差秒
+            var diffseconds = parseInt(Math.abs(difftimes % 60));
+            var diffMinutes = parseInt(Math.abs(difftimes % (60*60) / 60));
+            var diffHours = parseInt(Math.abs(difftimes % (60*60*24) / (60*60)));
+            var diffdays = parseInt(Math.abs(difftimes / (60*60*24)));
+
+            resultWrapper.innerHTML ="现在距离 " + yearSelect.value + "年" + monthSelect.value + "月" + daySelect.value + "日" + hourSelect.value + ":" + minuteSelect.value + ":" + secondSelect.value + " " + thinkTime(difftimes) + diffdays + "天 " + doubleDigit(diffHours) + "小时 " + doubleDigit(diffMinutes) + "分钟 " + doubleDigit(diffseconds) + "秒";
+            setTimeout("countDown()",1000);
+        }
+        countDown();
+
+        //判断时间是“已经过去”还是“还有”
+        function thinkTime(time){
+            if(time >= 0){
+                return "还有 ";
+            }else{
+                return "已经过去 ";
+            }
+        }
+        //两位数显示(补0)
+        function doubleDigit(time){
+            if(time < 10){
+                time = "0" + time;
+            }
+            return time;
+        }
+
+    </script>
+</body>
+</html>
